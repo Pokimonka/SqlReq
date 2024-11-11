@@ -17,10 +17,16 @@ GROUP BY a.title
 
 
 --Все исполнители, которые не выпустили альбомы в 2020 году
+
+SELECT au.name FROM autor au 
+WHERE au.name NOT IN (
 SELECT au.name FROM autor au 
 LEFT JOIN autor_album aa ON aa.autor_id = au.id 
 LEFT JOIN album al ON al.id = aa.album_id 
-WHERE al.year NOT BETWEEN '2020-01-01' AND '2020-12-31'
+WHERE al.year BETWEEN '2020-01-01' AND '2020-12-31'
+)
+
+
 
 --Названия сборников, в которых присутствует конкретный исполнитель .
 SELECT DISTINCT c.title FROM collection c 
